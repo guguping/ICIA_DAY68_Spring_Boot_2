@@ -45,4 +45,15 @@ public class BookController {
         bookService.delete(id);
         return "redirect:/books";
     }
+    @GetMapping("/book/update/{id}")
+    public String updateForm(@PathVariable Long id,Model model){
+        BookDTO bookDTO = bookService.findById(id);
+        model.addAttribute("book",bookDTO);
+        return "update";
+    }
+    @PostMapping("/book/update")
+    public String update(@ModelAttribute BookDTO bookDTO) {
+        bookService.update(bookDTO);
+        return "redirect:/books";
+    }
 }

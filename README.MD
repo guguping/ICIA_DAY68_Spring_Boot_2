@@ -49,9 +49,19 @@
 - staic 폴더에 css경로르 추가하고 css를 만든다
 - 경로 설정에는 th:href를 사용하고 @{}로 주소값을 넣어야한다
 
-### 태그에 링크로 controller에 값 전달하기 (파라미터 형식으로 전달)
+### 태그에 링크로 controller에 값 전달하기 (rest api 방식)
 ```html
 <a th:href="@{|/book/delete/${album.id}|}">삭제</a>
 ```
 - 마찬가지로 th:href 가 사용되고 추가로 @{} 안에 버티컬 바를 사용한다
 - 버틸컬 바가 없으면 주소가 제대로 전달되지 않기 때문에 주의가 필요하다
+- controller에서 전달 받기 위해서는 @RequestParam이 아닌 @PathVariable 를 사용한다
+
+### update 해보기
+- Spring Date JPA 에서는 따로 Update 메소드를 제공하지 않는다 
+그렇기 때문에 save를 사용하는데 save에서는 제공 받은 값에 id값이 있다면 
+새로 저장하는것이 아닌 해당 id값에 내용을 덮어 씌운다
+
+단점
+- 값을 덮어 씌우는 방식이기 때문에 모든 값을 받지 않으면
+- 전값이 null로 덮어 씌워지는 단점이 있다

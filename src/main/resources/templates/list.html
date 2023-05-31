@@ -15,6 +15,7 @@
         <th>책가격</th>
         <th>조회</th>
         <th>삭제</th>
+        <th>수정</th>
     </tr>
     <tr th:each="album:${bookList}">
         <th th:text="${album.id}"></th>
@@ -28,9 +29,12 @@
         <th>
             <a th:href="@{|/book/delete/${album.id}|}">삭제</a>
         </th>
+        <th>
+            <a th:href="@{|/book/update/${album.id}|}">수정</a>
+        </th>
     </tr>
     <tr>
-        <th colspan="6"><a href="/">뒤로가기</a></th>
+        <th colspan="7"><a href="/">뒤로가기</a></th>
     </tr>
 </table>
 </body>

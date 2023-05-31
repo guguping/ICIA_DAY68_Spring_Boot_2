@@ -5,6 +5,8 @@ import com.example.book.entity.BookEntity;
 import com.example.book.repository.BookRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -54,5 +56,9 @@ public class BookService {
 
     public void delete(Long id) {
         bookRepository.deleteById(id);
+    }
+
+    public void update(BookDTO bookDTO) {
+        bookRepository.save(BookEntity.toUpdate(bookDTO));
     }
 }
