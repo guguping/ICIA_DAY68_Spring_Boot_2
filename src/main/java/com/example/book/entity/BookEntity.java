@@ -21,7 +21,7 @@ public class BookEntity {
     String bookAuthor;
     @Column
     int bookPrice;
-    
+
     public static BookEntity toSaveEntity(BookDTO bookDTO){
         BookEntity bookEntity = new BookEntity();
         bookEntity.setBookName(bookDTO.getBookName());

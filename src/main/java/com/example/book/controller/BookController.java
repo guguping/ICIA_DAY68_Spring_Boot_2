@@ -4,9 +4,10 @@ import com.example.book.dto.BookDTO;
 import com.example.book.service.BookService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 
 @Controller
@@ -25,5 +26,17 @@ public class BookController {
     @PostMapping("/save")
     public void bookSave(@ModelAttribute BookDTO bookDTO){
         bookService.bookSave(bookDTO);
+    }
+    @GetMapping("/books")
+    public String findAll(Model model){
+        List<BookDTO> bookDTOList = bookService.findAll();
+        model.addAttribute("bookList",bookDTOList);
+        return "list";
+    }
+    @GetMapping("/book/{id}")
+    public String findById(@PathVariable Long id , Model model) {
+        BookDTO bookDTO = new BookDTO();
+        model.addAttribute("book",bookDTO);
+        return "detail";
     }
 }
