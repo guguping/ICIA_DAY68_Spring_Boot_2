@@ -1,4 +1,4 @@
-## Book Project
+## Book Project 1일차
 ### 기본페이지 : index.html
 - 책등록(/save),책목록(/books) 링크 있음
 
@@ -37,7 +37,21 @@
 ```
 - html 부분에 xmlns 주소를 꼭 넣어야한다
 
-### 수업내용
+### 2일차 수업내용
 - BookEntity 와 BookDTO 에 각각
 - Entity / DTO로 변환해주는 static 메소드가 있음 !!
 - 만들어진 메소드는 BookService에서 사용되었음 !!
+
+### html에 css 링크 추가하기 
+```html
+<link rel="stylesheet" th:href="@{/css/main.css}">
+```
+- staic 폴더에 css경로르 추가하고 css를 만든다
+- 경로 설정에는 th:href를 사용하고 @{}로 주소값을 넣어야한다
+
+### 태그에 링크로 controller에 값 전달하기 (파라미터 형식으로 전달)
+```html
+<a th:href="@{|/book/delete/${album.id}|}">삭제</a>
+```
+- 마찬가지로 th:href 가 사용되고 추가로 @{} 안에 버티컬 바를 사용한다
+- 버틸컬 바가 없으면 주소가 제대로 전달되지 않기 때문에 주의가 필요하다

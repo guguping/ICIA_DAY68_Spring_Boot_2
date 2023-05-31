@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>list</title>
+    <link rel="stylesheet" th:href="@{/css/main.css}">
+</head>
+<body>
+<h2>list</h2>
+<table>
+    <tr>
+        <th>번호</th>
+        <th>책이름</th>
+        <th>책저자</th>
+        <th>책가격</th>
+        <th>조회</th>
+        <th>삭제</th>
+    </tr>
+    <tr th:each="album:${bookList}">
+        <th th:text="${album.id}"></th>
+        <th th:text="${album.bookName}"></th>
+        <th th:text="${album.bookAuthor}"></th>
+        <th th:text="${album.bookPrice}"></th>
+        <th>
+            <a th:href="@{|/book/${album.id}|}">조회</a>
+            <!--<a th:href="@{/book/${album.id}}">조회</a> 버티컬 바가 없다면 주소가 제대로 적용되지 않는다 -->
+        </th>
+        <th>
+            <a th:href="@{|/book/delete/${album.id}|}">삭제</a>
+        </th>
+    </tr>
+    <tr>
+        <th colspan="6"><a href="/">뒤로가기</a></th>
+    </tr>
+</table>
+</body>
+</html>

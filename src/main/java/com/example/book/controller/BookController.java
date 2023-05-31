@@ -36,7 +36,13 @@ public class BookController {
     @GetMapping("/book/{id}")
     public String findById(@PathVariable Long id , Model model) {
         BookDTO bookDTO = new BookDTO();
+        bookDTO = bookService.findById(id);
         model.addAttribute("book",bookDTO);
         return "detail";
+    }
+    @GetMapping("/book/delete/{id}")
+    public String delete(@PathVariable Long id) {
+        bookService.delete(id);
+        return "redirect:/books";
     }
 }
