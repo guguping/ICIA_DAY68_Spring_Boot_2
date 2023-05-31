@@ -89,10 +89,7 @@
 
 import static org.assertj.core.api.Assertions.*;
 ```
-
-테스트에 필요한 메서드를 편하게 사용하기 위해 import를 추가함
-
-### Test 메소드 만들어보기
+- 테스트에 필요한 메서드를 편하게 사용하기 위해 import를 추가함
 - 테스트 데이터로 저장을해도 Transactional , Rollback 을 사용하지 않으면 db에 저장되기 때문에
 - 꼭 Transactional , Rollback 을 사용해야한다 (테스트 이후 다시 Rollback함)
 
