@@ -17,9 +17,11 @@ import java.util.Optional;
 public class BookService {
     private final BookRepository bookRepository;
 
-    public void bookSave(BookDTO bookDTO) {
+    public Long bookSave(BookDTO bookDTO) {
         BookEntity bookEntity = BookEntity.toSaveEntity(bookDTO);
-        bookRepository.save(bookEntity);
+//        System.out.println("bookEntity.toString() = " + bookEntity);
+        return bookRepository.save(bookEntity).getId();
+//        System.out.println("savedEntity = " + savedEntity);
     }
 
     public List<BookDTO> findAll() {

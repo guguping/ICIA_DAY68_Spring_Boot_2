@@ -1,14 +1,18 @@
 ## Book Project 1일차
+
 ### 기본페이지 : index.html
+
 - 책등록(/save),책목록(/books) 링크 있음
 
 ### 책등록페이지 : save.html
+
 - 책제목(bookName),저자(bookAuthor),가격(bookPrice) 입력받고 저장 버튼 클릭하면 /save 주소로 post 요청 보냄
 - BookController의 save 메서드는 입력값을 BookDTO 객체로 받아서 BookService의 save 메서드로 전달.
 
 ### List 방복문 / 태그 안에 model 값 넣기
 
 ```html
+
 <html lang="ko" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
@@ -31,37 +35,72 @@
     </tr>
 </table>
 ```
+
 ### 주의사항
+
 ```html
+
 <html lang="ko" xmlns:th="http://www.thymeleaf.org"> 
 ```
+
 - html 부분에 xmlns 주소를 꼭 넣어야한다
 
 ### 2일차 수업내용
+
 - BookEntity 와 BookDTO 에 각각
 - Entity / DTO로 변환해주는 static 메소드가 있음 !!
 - 만들어진 메소드는 BookService에서 사용되었음 !!
 
-### html에 css 링크 추가하기 
+### html에 css 링크 추가하기
+
 ```html
+
 <link rel="stylesheet" th:href="@{/css/main.css}">
 ```
+
 - staic 폴더에 css경로르 추가하고 css를 만든다
 - 경로 설정에는 th:href를 사용하고 @{}로 주소값을 넣어야한다
 
 ### 태그에 링크로 controller에 값 전달하기 (rest api 방식)
+
 ```html
 <a th:href="@{|/book/delete/${album.id}|}">삭제</a>
 ```
+
 - 마찬가지로 th:href 가 사용되고 추가로 @{} 안에 버티컬 바를 사용한다
 - 버틸컬 바가 없으면 주소가 제대로 전달되지 않기 때문에 주의가 필요하다
 - controller에서 전달 받기 위해서는 @RequestParam이 아닌 @PathVariable 를 사용한다
 
 ### update 해보기
-- Spring Date JPA 에서는 따로 Update 메소드를 제공하지 않는다 
-그렇기 때문에 save를 사용하는데 save에서는 제공 받은 값에 id값이 있다면 
-새로 저장하는것이 아닌 해당 id값에 내용을 덮어 씌운다
+
+- Spring Date JPA 에서는 따로 Update 메소드를 제공하지 않는다
+  그렇기 때문에 save를 사용하는데 save에서는 제공 받은 값에 id값이 있다면
+  새로 저장하는것이 아닌 해당 id값에 내용을 덮어 씌운다
 
 단점
+
 - 값을 덮어 씌우는 방식이기 때문에 모든 값을 받지 않으면
 - 전값이 null로 덮어 씌워지는 단점이 있다
+
+### test 메서드 만들어보기
+
+```java
+// Assertions 클래스가 가지고 있는 모든 static 메서드를 가져오겠다.
+
+import static org.assertj.core.api.Assertions.*;
+```
+
+테스트에 필요한 메서드를 편하게 사용하기 위해 import를 추가함
+
+#### 사용 예시
+```
+@Test
+public void bookSaveTest(){
+  BookDTO bookDTO = newBook(); // 테스트용 데이터 준비
+  Long savedId = bookService.bookSave(bookDTO); // 저장을 위한 메서드 호출 후 id값 가져옴
+  // id 로 조회
+  BookDTO findDTO = bookService.findById(savedId);
+  // 테스트용 데이터의 제목과 조회한 데이터의 제목이 일치하는지 확인
+  assertThat(bookDTO.getBookName()).isEqualTo(findDTO.getBookName());
+}
+```

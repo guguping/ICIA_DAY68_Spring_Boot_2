@@ -3,6 +3,7 @@ package com.example.book.entity;
 import com.example.book.dto.BookDTO;
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 import javax.persistence.*;
 
@@ -10,6 +11,7 @@ import javax.persistence.*;
 @Getter
 @Setter
 @Table(name = "book_table")
+@ToString
 public class BookEntity {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
